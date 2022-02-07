@@ -15,7 +15,9 @@
 
 # R Environment Variables ----
 .Renviron
+.Rbuildignore
 
 # User-specific files ----
 README.html
 inst/doc
+data/ipbes-regions/

@@ -20,14 +20,12 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
 Imports: 
     devtools,
+    graticule,
+    grDevices,
     here,
-    ragg,
+    readxl,
     remotes,
-    readr,
-    RColorBrewer,
-    rnaturalearth,
-    rnaturalearthdata,
-    rnaturalearthhires,
-    sf
-Remotes:
+    sf,
+    sp
+Remotes: 
     ropensci/rnaturalearthhires
