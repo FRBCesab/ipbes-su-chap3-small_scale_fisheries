@@ -1,0 +1,33 @@
+Package: ipbes.su.chap3.small.scale.fisheries
+Type: Package
+Title: IPBES Sustainable Use Assessment - Figure Chapter 3 - Small-scale Fisheries
+Version: 1.0.0
+Authors@R: c(
+    person(given   = "Nicolas",
+           family  = "Casajus",
+           role    = c("aut", "cre"),
+           email   = "nicolas.casajus@fondationbiodiversite.fr",
+           comment = c(ORCID = "0000-0002-5537-5294")))
+Description: Code to reproduce the Figure 'Small-scale Fisheries' of 
+    the chapter 3 of the IPBES Sustainable Use Assessment. This figure shows 
+    the global distribution of 350 reviewed studies on small-scale fisheries.
+URL: https://github.com/frbcesab/ipbes-su-chap3-small_scale_fisheries
+BugReports: https://github.com/frbcesab/ipbes-su-chap3-small_scale_fisheries/issues
+License: CC BY 4.0
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+Imports: 
+    devtools,
+    here,
+    ragg,
+    remotes,
+    readr,
+    RColorBrewer,
+    rnaturalearth,
+    rnaturalearthdata,
+    rnaturalearthhires,
+    sf
+Remotes:
+    ropensci/rnaturalearthhires
