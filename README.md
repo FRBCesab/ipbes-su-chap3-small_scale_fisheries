@@ -9,11 +9,13 @@ the global distribution of 350 reviewed studies on small-scale fisheries.
 ![](figures/ipbes-su-chap3-small_scale_fisheries.png)
 
 
-## Requierements
+## System Requirements
 
-Two spatial layers are required and must be added in the folder `data/`:
-- World maritime boundaries EEZ v11 (available [here](https://marineregions.org/downloads.php))
-- Natural Earth ocean boundaries (available [here](https://www.naturalearthdata.com/downloads/50m-physical-vectors/50m-ocean/))
+This project handles spatial objects with the R package
+[`sf`](https://cran.r-project.org/web/packages/sf/index.html). This
+package requires some system dependencies (GDAL, PROJ and GEOS). Please
+visit [this page](https://github.com/r-spatial/sf/#installing) to
+correctly install these tools.
 
 
 ## Usage
