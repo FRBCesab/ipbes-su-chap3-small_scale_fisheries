@@ -24,18 +24,33 @@ remotes::install_deps(upgrade = "never")
 devtools::load_all(".")
 
 
-
 ## Read IPBES Countries ----
 
-world <- sf::st_read(here::here("data", "ipbes-regions", 
+world <- sf::st_read(here::here("data", "ipbes-regions", "ipbes_subregions_2",
                                 "IPBES_Regions_Subregions2.shp"))
-# world <- world[which(world$Area != "Antarctica"), ]
+
+dotted <- sf::st_read(here::here("data", "ipbes-regions", "dotted_borders",
+                                 "dotted_borders.shp"))
+
+dashed <- sf::st_read(here::here("data", "ipbes-regions", "dashed_borders",
+                                 "dashed_borders.shp"))
+
+lakes <- sf::st_read(here::here("data", "ipbes-regions", "major_lakes",
+                                 "Major_Lakes.shp"))
+
+grey_areas <- sf::st_read(here::here("data", "ipbes-regions", "grey_areas",
+                                     "grey_areas.shp"))
 
 
 ## Project in Robinson ----
 
 robin <-  "+proj=robin +lon_0=0 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs"
-world <- sf::st_transform(world, robin)
+
+world      <- sf::st_transform(world, robin)
+dotted     <- sf::st_transform(dotted, robin)
+dashed     <- sf::st_transform(dashed, robin)
+lakes      <- sf::st_transform(lakes, robin)
+grey_areas <- sf::st_transform(grey_areas, robin)
 
 
 # Create Graticules ----
@@ -57,11 +72,11 @@ tab <- as.data.frame(tab)
 
 ## Add Data to Shapefile ----
 
-world$studies <- NA
+world$"studies" <- NA
 
 for (i in 1:nrow(tab)) {
   
-  lignes <- which(world$Area == tab[i, "Country"])
+  lignes <- which(world$"Area" == tab[i, "Country"])
   
   # Detect mispelled country name (to be changed in xlsx not the SHP)
   if (!length(lignes)) stop(paste0(i, " : ", tab[i, "Country"]))
@@ -78,7 +93,7 @@ classes <- data.frame(from  = c(0, 1, 1, 4,  9, 15, 20),   # x >  from
                       color = c("#FFFFFF", "#FFCBFE", "#FF98FD", "#FF63FC", 
                                 "#FF00FC", "#CF00C9", "#680064"))
 
-world$color <- NA
+world$"color" <- NA
 
 for (i in 1:nrow(classes)) {
   
@@ -90,20 +105,20 @@ for (i in 1:nrow(classes)) {
 
 
 # NA values...
+
 pos <- which(is.na(world[ , "studies", drop = TRUE]))
 if (length(pos)) world[pos, "color"] <- "#f0f0f0"
 
+
 # Other colors...
-borders <- "#c8c8c8"
-texte   <- "#666666"
+
+borders  <- "#c8c8c8"
+texte    <- "#666666"
+col_sea  <- "#e5f1f6"
+col_grat <- "#bfdde9"
 
 ## Graphical Device ----
-## ... 20min to get the PNG ...
-# grDevices::png(file = here::here("figures", "map_renato.png"),
-#                width = 12, height = 7.5, pointsize = 14, units = "in", 
-#                res = 600)
 
-## ...  2min to get the PDF ...
 png(here::here("figures", "ipbes-su-chap3-small_scale_fisheries.png"),
     width = 12, height = 7.5, units = "in", res = 600, pointsize  = 18)
 
@@ -117,6 +132,19 @@ sp::plot(grat, lty = 1, lwd = 0.2, col = borders)
 plot(sf::st_geometry(world), col = world$"color", border = borders, 
      lwd = 0.2, add = TRUE)
 
+plot(sf::st_geometry(dotted), add = TRUE, col = "white", lwd = 0.2, 
+     lty = "solid")
+plot(sf::st_geometry(dotted), add = TRUE, col = borders, lwd = 0.2, 
+     lty = "dotted")
+
+plot(sf::st_geometry(dashed), add = TRUE, col = "white", lwd = 0.2, 
+     lty = "solid")
+plot(sf::st_geometry(dashed), add = TRUE, col = borders, lwd = 0.2, 
+     lty = "dashed")
+
+plot(sf::st_geometry(grey_areas), add = TRUE, col = "#a8a8a8", border = borders,
+     lwd = 0.2)
+
 
 ## Legend ----
 
@@ -126,7 +154,6 @@ x_start  <- -1 * (x_length * (nrow(classes) / 2))
 if (nrow(classes) %% 2 != 0) x_start <- x_start - (x_length / 2)
 
 y_height <-    500000
-# y_middle <- -10000000
 y_middle <- -10500000
 
 par(xpd = TRUE)
@@ -150,6 +177,12 @@ for (i in 1:nrow(classes)) {
 
 text(x = 0, y = y_middle + y_height, col = texte, font = 2, pos = 3,
      labels = "Small Scale Fisheries: Number of studies per country")
+
+
+## Add lakes ----
+
+plot(sf::st_geometry(lakes), add = TRUE, col = col_sea, border = col_grat,
+     lwd = 0.2)
 
 par(xpd = FALSE)
 
