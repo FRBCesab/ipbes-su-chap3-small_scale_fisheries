@@ -18,14 +18,12 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
+SystemRequirements: GDAL, GEOS, PROJ, Rtools (for Windows users)
 Imports: 
     devtools,
     graticule,
-    grDevices,
     here,
     readxl,
     remotes,
     sf,
     sp
-Remotes: 
-    ropensci/rnaturalearthhires
