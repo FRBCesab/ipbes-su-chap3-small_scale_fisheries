@@ -119,8 +119,11 @@ col_grat <- "#bfdde9"
 
 ## Graphical Device ----
 
-png(here::here("figures", "ipbes-su-chap3-small_scale_fisheries.png"),
-    width = 12, height = 7.5, units = "in", res = 600, pointsize  = 18)
+# png(here::here("figures", "ipbes-su-chap3-small_scale_fisheries.png"),
+#     width = 12, height = 7.5, units = "in", res = 600, pointsize  = 18)
+
+svg(here::here("figures", "ipbes-su-chap3-small_scale_fisheries.svg"),
+    width = 12, height = 7.5, pointsize  = 18)
 
 
 ## Basemap + Data + Graticules ----
