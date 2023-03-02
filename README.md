@@ -1,10 +1,11 @@
-# IPBES Sustainable Use Assessment - Figure Chap3 Small-scale Fisheries
+## IPBES Sustainable Use of Wild Species Assessment - Chapter 3 - Data management report for the figure 3.22
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgreen.svg)](https://choosealicense.com/licenses/cc-by-4.0/)
 
-This repository contains the code to reproduce the Figure 'Small-scale Fisheries' of 
-the chapter 3 of the **IPBES Sustainable Use Assessment**. This figure shows the 
-the global distribution of 350 reviewed studies on small-scale fisheries.
+This repository contains the code to reproduce the Figure 3.22 of 
+the Chapter 3 of the **IPBES Sustainable Use of Wild Species Assessment**. 
+
+For more information: https://zenodo.org/record/6513754
 
 ![](figures/ipbes-su-chap3-small_scale_fisheries.png)
 
@@ -30,5 +31,8 @@ in the folder `figures/`.
 This work is licensed under 
 [Creative Commons Attribution 4.0 International](https://choosealicense.com/licenses/cc-by-4.0/).
 
-Please cite this work as: [...]
+Please cite this work as:
+
+> Renato Azevedo Matias Silvano, & Nicolas Casajus. (2022). IPBES Sustainable Use of Wild Species Assessment - Chapter 3 - Data management report for the figure 3.22. Zenodo. https://doi.org/10.5281/zenodo.6513754.
+
 
